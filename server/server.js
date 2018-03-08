@@ -8,7 +8,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
-const publication = require('./entities/publication/publication')
+const publication = require('../entities/publication/publication')
 
 publication.helloWorld()
 

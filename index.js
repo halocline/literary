@@ -6,7 +6,7 @@
 'use strict'
 // we load all the depencies we need
 const {EventEmitter} = require('events')
-const server = require('./server')
+const server = require('./server/server')
 const repository = require('./entities/publication/repository')
 const config = require('./config/')
 const mediator = new EventEmitter()
