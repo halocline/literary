@@ -7,56 +7,126 @@
 <div class="row">
 	<div class="col-md-12">
 		<form>
-			<hr>
-		  <div class="form-group">
-		    <label for="name" class="sr-only">Publication Name</label>
-		    <input type="text" class="form-control" id="name" placeholder="Publication Name" value="{{name}}">
-		  </div>
-		  <div class="input-group">
-		    <label for="ISSN" class="sr-only">ISSN</label>
-				<div class="input-group-prepend">
-    			<span class="input-group-text" id="ISSN-addon">ISSN</span>
-  			</div>
-		    <input type="text" class="form-control" id="ISSN" aria-describedby="ISSN-addon" placeholder="ISSN" value="{{ISSN}}">
-		  </div>
-			<div class="form-group">
-		    <label for="website" class="sr-only">Website</label>
-		    <input type="url" class="form-control" id="website" placeholder="Website | www.example.com" value="{{website}}">
-		  </div>
-			<div class="row">
-				<div class="col">
-
+			<div class="card my-3">
+				<h3 class="card-header">Publication</h3>
+				<div class="card-body">
+					<p class="card-text">
+						<button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target=".publication-toggle" aria-expanded="false" aria-controls="">
+							<i class="material-icons md-18">mode_edit</i>
+						</button>
+						<div class="publication-toggle collapse show">
+							{{name}}<br>
+							{{ISSN}}<br>
+							{{website}}
+						</div>
+						<div class="publication-toggle collapse hidden">
+						  <div class="form-group">
+						    <label for="name" class="sr-only">Publication Name</label>
+						    <input type="text" class="form-control" id="name" placeholder="Publication Name" value="{{name}}">
+						  </div>
+						  <div class="input-group">
+						    <label for="ISSN" class="sr-only">ISSN</label>
+								<div class="input-group-prepend">
+				    			<span class="input-group-text" id="ISSN-addon">ISSN</span>
+				  			</div>
+						    <input type="text" class="form-control" id="ISSN" aria-describedby="ISSN-addon" placeholder="ISSN" value="{{ISSN}}">
+						  </div>
+							<div class="form-group">
+						    <label for="website" class="sr-only">Website</label>
+						    <input type="url" class="form-control" id="website" placeholder="Website | www.example.com" value="{{website}}">
+						  </div>
+						</div>
+					</p>
 				</div>
 			</div>
-			<h3>Address</h3>
-			<hr>
-			<div class="form-group">
-		    <label for="address1" class="sr-only">Address</label>
-		    <input type="text" class="form-control" id="address1" placeholder="Street Address" value="{{address1}}">
-		  </div>
-			<div class="form-group">
-		    <label for="address2" class="sr-only">Address2</label>
-		    <input type="text" class="form-control" id="address2" placeholder="Suite or Unit" value="{{address2}}">
-		  </div>
-			<div class="form-group">
-		    <label for="city" class="sr-only">City</label>
-		    <input type="text" class="form-control" id="city" placeholder="Suite or Unit" value="{{clity}}">
-		  </div>
-			<div class="form-group">
-		    <label for="state" class="sr-only">State</label>
-		    <select type="text" class="form-control" id="state" placeholder="State" value="{{state}}">
-					<option selected>-- State --</option>
-        	<option>...</option>
-					<option>***</option>
-				</select>
-		  </div>
-			<div class="form-group">
-		    <label for="zipcode" class="sr-only">ZIP Code</label>
-		    <input type="text" class="form-control" id="city" placeholder="ZIP Code" value="{{zipcode}}">
-		  </div>
+			<div class="card my-3">
+				<div class="card-body">
+					<h3 class="">Address</h3>
+					<hr>
+					<button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target=".address-toggle" aria-expanded="false" aria-controls="address-display address-edit">
+						<i class="material-icons md-18">mode_edit</i>
+					</button>
+					<div class="address-toggle collapse show">
+						<address>
+							<strong>{{name}}</strong><br>
+							{{address.address1}}<br>
+							{{address.address2}}<br>
+							{{address.city}}<br>
+							{{address.state}}<br>
+							{{address.zipcode}}
+						</address>
+					</div>
+					<div class="address-toggle collapse hidden">
+						<div class="form-group">
+					    <label for="address.address1" class="sr-only">Address</label>
+					    <input type="text" class="form-control" id="address.address1" placeholder="Street Address" value="{{address.address1}}">
+					  </div>
+						<div class="form-group">
+					    <label for="address.address2" class="sr-only">Address2</label>
+					    <input type="text" class="form-control" id="address.address2" placeholder="Suite or Unit" value="{{address.address2}}">
+					  </div>
+						<div class="form-group">
+					    <label for="address.city" class="sr-only">City</label>
+					    <input type="text" class="form-control" id="address.city" placeholder="Suite or Unit" value="{{address.city}}">
+					  </div>
+						<div class="form-group">
+					    <label for="address.state" class="sr-only">State</label>
+					    <select type="text" class="form-control" id="address.state" placeholder="State" value="{{address.state}}">
+								<option>-- State --</option>
+			        	<option>...</option>
+								<option value="CO">CO</option>
+							</select>
+					  </div>
+						<div class="form-group">
+					    <label for="address.zipcode" class="sr-only">ZIP Code</label>
+					    <input type="text" class="form-control" id="address.zipcode" placeholder="ZIP Code" value="{{address.zipcode}}">
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="card my-3">
+				<div class="card-body">
+					<h3 class="card-title">Submission</h3>
+					<button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target=".submitCriteria-toggle" aria-expanded="false" aria-controls="">
+						<i class="material-icons md-18">mode_edit</i>
+					</button>
+					<div class="submitCriteria-toggle collapse show">
+						{{submitCriteria.submitOnline}}<br>
+						{{submitCriteria.submitUrl}}<br>
+						{{submitCriteria.moreInfo}}
+					</div>
+					<div class="submitCriteria-toggle collapse hidden">
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="submitCriteria.submitOnline" placeholder="Publication Name" value="{{submitCriteria.submitOnline}}">
+							<label for="submitCriteria.submitOnline" class="form-check-label">Accepts Online Submissions</label>
+						</div>
+						<div class="form-group">
+							<label for="submitCriteria.submitUrl" class="sr-only">Submission URL</label>
+							<input type="url" class="form-control" id="submitCriteria.submitUrl" placeholder="Submission Website | www.example.com/submit" value="{{submitCriteria.submitUrl}}">
+						</div>
+						<div class="form-group">
+							<label for="submitCriteria.moreInfo" class="sr-only">Submission Website</label>
+							<input type="url" class="form-control" id="submitCriteria.moreInfo" placeholder="Submission Website | www.example.com/info" value="{{submitCriteria.moreInfo}}">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card my-3">
+				<div class="card-body">
+					<h3 class="">Microfilm</h3>
+					<div class="form-group">
+						<label for="microfilm.storage" class="sr-only">Stored at:</label>
+						<input type="text" class="form-control" id="microfilm.storage" placeholder="Microfilm stored at..." value="{{microfilm.storage}}">
+					</div>
+					<div class="form-group">
+						<label for="microfilm.index" class="sr-only">Stored at:</label>
+						<input type="text" class="form-control" id="microfilm.index" placeholder="Microfilm Index" value="{{microfilm.index}}">
+					</div>
+				</div>
+			</div>
 			<div class="row">
-				<div class="col-4 align-self-end">
-					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				<div class="col-5 mx-auto">
+					<button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
 				</div>
 			</div>
 		</form>

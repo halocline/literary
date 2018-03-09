@@ -13,22 +13,30 @@
     <h2>Publications</h2>
 		<table class="table table-striped table-hover table-sm">
 		  <thead>
-		  	<th>ISSN</th>
 		  	<th>Name</th>
+        <th>ISSN</th>
 		  	<th>Website</th>
-		  	<th>Column</th>
+		  	<th>Snapshot</th>
+        <th>Published Since</th>
+        <th>Currently Accepting Submissions</th>
 		  </thead>
 		  <tbody>
 		  	{{#publications}}
 		  		<tr>
-		  			<td><a href="/publications/{{_id}}">{{ISSN}}</a></td>
 		  			<td><a href="/publications/{{_id}}">{{name}}</a></td>
+            <td><a href="/publications/{{_id}}">{{ISSN}}</a></td>
 		  			<td>
               {{website}}
 		  			</td>
 		  			<td>
-
+              <i class="material-icons">gesture</i>
+              <i class="material-icons">monetization_on</i>
+              <i class="material-icons">pie_chart</i>
+              <i class="material-icons">local_dining</i>
+              <i class="material-icons">ac_unit</i>
 		  			</td>
+            <td></td>
+            <td></td>
 		  		</tr>
 		  	{{/publications}}
 		  </tbody>
