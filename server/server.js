@@ -9,6 +9,7 @@ const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const exphbs = require('express-handlebars')
+const literary = require('../frontend/literary')
 const publication = require('../entities/publication/publication')
 
 publication.helloWorld()
@@ -27,36 +28,40 @@ const start = (options) => {
     const app = express()
     app.use( morgan('dev') )    // Logging
     app.use( helmet() )         //
-    app.use( express.static(__dirname + '../public') )
+    //app.use( express.static(__dirname + './public') )
+    app.use( express.static('./frontend/public') )
 
     // Setting express-handlebars as view engine
-    app.engine('.hbs', () => {
-      reject( new Error('Could not set express-handlebars as express app engine.') )
-      exphbs(
-        {
-          defaultLayout: 'main',
-          extname: '.hbs',
-          layoutsDir: path.join(__dirname, '../views/layouts')
-        }
-      )
+    const hbs = exphbs.create({
+      defaultLayout: 'main',
+      extname: '.hbs',
+        layoutsDir: './frontend/views/layouts'
     })
-    app.set('view engine', () => {
-      reject( new Error('Could not set express handlebars as express app view engine.') )
-      '.hbs'
-    })
-    app.set('views', () => {
-      reject( new Error('Could not set default views directory.') )
-      path.join(__dirname, '../views')
-    })
+    // Register `hbs.engine` with the Express app.
+    app.engine('.hbs', hbs.engine);
+    app.set('view engine', '.hbs');
+    /*
+    app.set('view options', {
+      defaultLayout: 'main',
+		  extname: '.hbs',
+		  layoutsDir: '../frontend/views/layouts'
+    });
+    */
 
+    // Logging request headers
+    /*
     app.use( (req, res, next) => {
     	console.log(req.headers)
     	next()
     })
+    */
     app.use( (err, req, res, next) => {
       reject( new Error('Something went wrong!, err:' + err) )
       res.status(500).send('Something went wrong!')
     })
+
+    // Add Literary frontend routes
+    literary.api(app)
 
     // Add Publication API to express app
     publication.api(app, options)

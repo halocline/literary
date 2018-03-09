@@ -9,7 +9,11 @@ const {EventEmitter} = require('events')
 const server = require('./server/server')
 const repository = require('./entities/publication/repository')
 const config = require('./config/')
+const path = require('path')
 const mediator = new EventEmitter()
+
+//
+global.appRoot = path.resolve(__dirname);
 
 // Verbose logging when we are starting the server
 console.log('--- Publications Service ---')

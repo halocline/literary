@@ -1,0 +1,10 @@
+body {
+  background-color: white;
+}
+.navbar-brand > img {
+  max-height: 25px;
+}
+.row{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
