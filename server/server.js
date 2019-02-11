@@ -60,6 +60,11 @@ const start = (options) => {
       res.status(500).send('Something went wrong!')
     })
 
+    // Rewquest bodyParser
+    const bodyParser = require('body-parser')
+    app.use( bodyParser.json() ) // support json encoded bodies
+    app.use( bodyParser.urlencoded({ extended: true }) ) // support encoded bodies
+
     // Add Literary frontend routes
     literary.api(app)
 

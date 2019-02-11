@@ -63,21 +63,31 @@ const repository = (db) => {
   }
 
   const getPublicationById = (id) => {
-    console.log('getPublicationById: ' + id)
     return new Promise( (resolve, reject) => {
       //const projection = { _id: 0, id: 1, title: 1, format: 1 }
       const projection = { }
       const sendPublication = (err, publication) => {
-        console.log('getPublicationById.findOne.sendPublication: ' + id)
         if(err) {
           reject( new Error(`An error occured fetching a publication with id: ${id}, err: ${err}`) )
         }
-        //console.log(publication)
         resolve(publication)
       }
-      console.log('getPublicationById.findOne: ' + id)
       id = new mongo.ObjectID(id);
       collection.findOne({_id: id}, projection, sendPublication)
+    })
+  }
+
+  const updatePublication = (id, params) => {
+    return new Promise( (resolve, reject) => {
+      const set = '{ $set: {} }'
+      const sendPublication = (err, publication) => {
+        if(err) {
+          reject( new Error(`An error occured updating a publication with id: ${id}, err: ${err}`) )
+        }
+        resolve(publication)
+      }
+      id = new mongo.ObjectID(id);
+      collection.update({_id: id}, set, sendPublication)
     })
   }
 

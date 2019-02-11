@@ -10,13 +10,10 @@ const api = (app, options) => {
   // Get all publications
   app.get('/publications', (req, res, next) => {
     repo.getPublicationsAll().then(publications => {
-      res.status(status.OK).json(publications)
-    }).catch(next)
-  })
-
-  app.get('/publications2', (req, res, next) => {
-    repo.getPublicationsAll().then(docs => {
-      res.render(appRoot + '/frontend/views/layouts/publications', { publications: docs } )
+      if( req.query.hasOwnProperty("format") && req.query.format === 'json') {
+        res.status(status.OK).json(publications)
+      }
+      res.render(appRoot + '/frontend/views/layouts/publications', { publications: publications } )
     }).catch(next)
   })
 
@@ -29,18 +26,30 @@ const api = (app, options) => {
 
   // Get publication by id
   app.get('/publications/:id', (req, res, next) => {
+    console.log('Query Params:')
+    console.log(req.query)
+    console.log('Request Params:')
     console.log(req.params)
-    console.log(req.params.id)
-    /*
-    repo.getPublicationById(req.params.id).then(function(publication) {
-      res.status(status.OK).json(publication)
-    }).catch(next)
-    */
+
     repo.getPublicationById(req.params.id).then(publication => {
-      console.log(publication)
+      if( req.query.hasOwnProperty("format") && req.query.format === 'json') {
+        res.status(status.OK).json(publication)
+      }
       res.render(appRoot + '/frontend/views/layouts/publication', { publication: publication } )
       //res.status(status.OK).json(publication)
     }).catch(next)
+  })
+
+  app.post('/publications/:id', (req, res, next) => {
+    console.log('POST Call: ')
+    console.log(req.params)
+    console.log(req.query)
+    console.log(req.body)
+    /*
+    repo.updatePublication(req.params.id, req.query).then(publication => {
+
+    }).catch(next)
+    */
   })
 }
 
